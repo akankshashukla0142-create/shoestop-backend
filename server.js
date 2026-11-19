@@ -7,7 +7,7 @@ const productRoutes = require('./routes/productRoutes')
 const userRoutes = require('./routes/userRoutes')
 dotenv.config()
 
-const port = process.env.port
+const port = process.env.PORT || process.env.port || 5000
 
 app.use(express.json());
 app.use(cors())
@@ -24,7 +24,7 @@ const startServer = async ()=>{
        
         await connectDB(process.env.mongoURI)
         console.log('connected to db');
-        app.listen(port , ()=>{
+        app.listen(port, '0.0.0.0', ()=>{
             console.log(`server started at ${port}`);
         })
     }
